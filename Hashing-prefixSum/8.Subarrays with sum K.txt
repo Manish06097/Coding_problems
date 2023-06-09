@@ -1,0 +1,26 @@
+#Subarrays with sum K
+(https://practice.geeksforgeeks.org/problems/subarrays-with-sum-k/)
+#cpp code
+
+class Solution{
+    public:
+    int findSubArraySum(int Arr[], int N, int k)
+    {
+        // code here
+        
+        unordered_map<int,int>mpp;
+        
+        int count=0,idx=0,sum=0;
+        for(idx=0;idx<N;idx++)
+        {
+            sum=sum+Arr[idx];
+            if(sum == k ) count++;
+            count += mpp[sum-k];
+            mpp[sum]++;
+        }
+        return count;
+        
+        
+    }
+
+#explaination
