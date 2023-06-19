@@ -1,0 +1,64 @@
+#Longest K unique characters substring
+(https://practice.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/)
+
+# cpp code 
+
+class Solution{
+  public:
+    int longestKSubstr(string s, int k) {
+    // your code here
+    
+    unordered_map<char,int>mpp;
+    int i=0,j=0;
+    int max=0;
+    while(j<s.length())
+    {
+        
+        
+        if(mpp.size()<=k)
+        {
+            // cout<<" j ";
+            
+            mpp[s[j]]++;
+            
+            j++;
+        }
+        else
+        {
+            if(mpp[s[i]] ==1)
+            {
+                // cout<<' i ';
+                mpp.erase(s[i]);
+                i++;
+            }
+            else
+            {
+                // cout<<' i ';
+                mpp[s[i]]--;
+                i++;
+            }
+        }
+        
+        if (mpp.size()==k)
+        {
+            if(j-i>=max)
+        {
+            max=j-i;
+        }
+        }
+        
+        
+        
+        
+        
+    }
+    if(max<k)
+    {
+        
+        return -1;
+    }
+    else{
+    return max;
+    }
+    }
+};
