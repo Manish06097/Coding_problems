@@ -1,0 +1,57 @@
+1.Max Sum Subarray of size K
+(https://practice.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/)
+
+#cpp
+
+code -1 
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        long sum=0;
+        
+        for (long i=0;i<K ;i++)
+        {
+            sum+=Arr[i];
+            
+        }
+        long max=sum;
+        
+        for(long i = K;i<N;i++)
+        {
+            sum=sum+Arr[i]-Arr[i-K];
+            if(sum>max)
+            {
+                max=sum;
+            }
+        }
+        return max;
+    }
+};
+
+#code 2
+
+long maximumSumSubarray(int k, vector<int> &Arr , int N){
+        long maxi = INT_MIN;
+        long sum = 0;
+        int i = 0,j=0;
+        while(j<Arr.size())
+        {
+            sum += Arr[j];
+            if(j-i+1 < k)
+            {
+                j++;
+            }
+            else if(j-i+1 ==k)
+            {
+                maxi = max(maxi,sum);
+                sum -= Arr[i];
+                i++;
+                j++;
+            }
+        }
+        return maxi;
+    }
+    
+    
+    
